@@ -1,0 +1,80 @@
+void setup(){
+  pinMode(13,OUTPUT);
+  pinMode(12,OUTPUT);
+  pinMode(11,OUTPUT);
+}
+
+void AND (int X,int Y){
+  if (X==1 && Y==1)
+  digitalWrite(11, HIGH);
+  	else
+       digitalWrite(11,LOW);
+}
+
+void OR (int X,int Y){  
+  if (X==1 || Y==1)
+  digitalWrite(11, HIGH);
+    else
+       digitalWrite(11,LOW);
+}
+
+void NOT (int X,int Z){
+  if (Z==!X)
+  digitalWrite(11, HIGH);
+    else
+       digitalWrite(11,LOW);
+}
+
+void NAND (int X,int Y,int Z){
+  if (Z=!(X==1 && Y==1))
+  digitalWrite(11, HIGH);
+    else
+       digitalWrite(11,LOW);
+}
+
+void NOR (int X,int Y,int Z){
+  if (Z=!(X==1 || Y==1))
+  digitalWrite(11, HIGH);
+    else
+       digitalWrite(11,LOW);
+}
+
+void XOR (int X,int Y,int Z){
+  if (Z=(X ^ Y))
+  digitalWrite(11, HIGH);
+    else
+       digitalWrite(11,LOW);
+}
+
+void loop() {
+  int Z = 1;
+  int X = 0;
+  int Y = 0;
+  while (Z<=4){
+    if(Z<=2)
+      X=1;
+      else 
+      X=0;
+  
+      if((Z%2)==1)
+      Y=0;
+      else 
+      Y=1;
+    
+  	digitalWrite(13, X);
+  	digitalWrite(12, Y);
+    
+    AND(X, Y);
+    OR(X, Y);
+    NOT(X, Y);
+    NAND(X, Y, Z);
+    NOR(X, Y, Z);
+    XOR(X, Y, Z);
+    
+    delay(1000); // Wait for 1000 millisecond(s)
+    
+    if (Z==4) 
+      Z=0;
+    else Z++;
+  } 
+}
